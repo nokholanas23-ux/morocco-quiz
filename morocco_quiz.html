@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Викторина про Марокко</title>
+
+  <style>
+    /* простой стиль для всей страницы */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fdf6e3;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #c1272d;
+    }
+
+    /* каждый вопрос - это отдельный блок */
+    .question {
+      display: none;            /* по умолчанию скрыт */
+      max-width: 500px;
+      margin: 20px auto;
+      background-color: white;
+      border: 2px solid #c1272d;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    /* активный (видимый) вопрос */
+    .active {
+      display: block;
+    }
+
+    .question img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    /* кнопки с вариантами ответа */
+    button {
+      display: block;
+      width: 100%;
+      margin: 6px 0;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f0e6d2;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #e0d0b0;
+    }
+
+    /* текст с объяснением после ответа */
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    /* кнопка "следующий вопрос" */
+    .next-btn {
+      background-color: #006233;
+      color: white;
+      margin-top: 15px;
+      display: none;   /* появляется только после ответа */
+    }
+
+    /* блок с результатом в конце */
+    #result {
+      display: none;
+      max-width: 500px;
+      margin: 20px auto;
+      background-color: white;
+      border: 2px solid #006233;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .restart-btn {
+      background-color: #c1272d;
+      color: white;
+    }
+
+    #hero {
+      background-image: url('frir.jpg');
+      background-size: cover;
+      background-position: center;
+      min-height: 560px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 0 20px 60px 20px;
+      margin: -20px -20px 0 -20px;
+    }
+
+    #start-screen {
+      margin: 0;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 14px;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+      padding: 40px 35px;
+    }
+    
+
+    #start-screen h2 {
+      margin-top: 0;
+    }
+
+    #start-screen p {
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+
+    .hero-pic {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+    }
+    .start-btn {
+      background-color: #006233;
+      color: white;
+      font-size: 18px;
+      padding: 14px;
+    }
+  </style>
+</head>
+
+<body>
+<div id="hero">
+    <div id="start-screen">
+    <h1>Викторина про Марокко</h1>
+    <h2>Привет!</h2>
+    <p>Ответь на 10 вопросов и проверь свои знания о Марокко: география, культура, язык и традиции.</p>
+    <button class="start-btn" onclick="startQuiz()">Начать викторину →</button>
+  </div>
+</div>
+
+
+  <!-- ВОПРОС 1 -->
+  <div class="question" id="q1">
+    <img class="pic" src="rabat.jpeg" alt="Рабат">
+    <h2>1. Какой город является столицей Марокко?</h2>
+    <button onclick="checkAnswer(0)">Касабланка</button>
+    <button onclick="checkAnswer(1)">Рабат</button>
+    <button onclick="checkAnswer(2)">Марракеш</button>
+    <button onclick="checkAnswer(3)">Фес</button>
+    <p class="feedback" id="feedback1"></p>
+    <button class="next-btn" id="next1" onclick="nextQuestion()">Следующий вопрос →</button>
+  </div>
+
+  <!-- ВОПРОС 2 -->
+  <div class="question" id="q2">
+    <img src="piqsels.jpg" alt="Марокко">
+    <h2>2. Какова официальная валюта Марокко?</h2>
+    <button onclick="checkAnswer(0)">Динар</button>
+    <button onclick="checkAnswer(1)">Франк</button>
+    <button onclick="checkAnswer(2)">Дирхам</button>
+    <button onclick="checkAnswer(3)">Риял</button>
+    <p class="feedback" id="feedback2"></p>
+    <button class="next-btn" id="next2" onclick="nextQuestion()">Следующий вопрос →</button>
+  </div>
+
+  <!-- ВОПРОС 3 -->
+  <div class="question" id="q3">
+    <img src="https://images.unsplash.com/photo-1542662565-7e4b66bae529?w=800&q=80" alt="Горы Марокко">
+    <h2>3. Какой горный хребет проходит через Марокко?</h2>
+    <button onclick="checkAnswer(0)">Альпы</button>
+    <button onclick="checkAnswer(1)">Гималаи</button>
+    <button onclick="checkAnswer(2)">Атласские горы</button>
+    <button onclick="checkAnswer(3)">Анды</button>
+    <p class="feedback" id="feedback3"></p>
+    <button class="next-btn" id="next3" onclick="nextQuestion()">Следующий вопрос →</button>
+  </div>
+
+  <!-- ВОПРОС 4 -->
+  <div class="question" id="q4">
+    <img src="tangier.jpeg" alt="Касабланка">
+    <h2>4. Какой город является крупнейшим в Марокко?</h2>
+    <button onclick="checkAnswer(0)">Рабат</button>
+    <button onclick="checkAnswer(1)">Касабланка</button>
+    <button onclick="checkAnswer(2)">Фес</button>
+    <button onclick="checkAnswer(3)">Танжер</button>
+    <p class="feedback" id="feedback4"></p>
+    <button class="next-btn" id="next4" onclick="nextQuestion()">Следующий вопрос →</button>
+  </div>
+
+  <!-- ВОПРОС 5 -->
+  <div class="question" id="q5">
+    <img src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=800&q=80" alt="Пустыня Сахара">
+    <h2>5. Какая пустыня граничит с Марокко на юго-востоке?</h2>
+    <button onclick="checkAnswer(0)">Пустыня Гоби</button>
+    <button onclick="checkAnswer(1)">Аравийская пустыня</button>
+    <button onclick="checkAnswer(2)">Пустыня Сахара</button>
+    <button onclick="checkAnswer(3)">Пустыня Намиб</button>
+    <p class="feedback" id="feedback5"></p>
+    <button class="next-btn" id="next5" onclick="nextQuestion()">Следующий вопрос →</button>
+  </div>
+
+  <!-- ВОПРОС 6 -->
+  <div class="question" id="q6">
+    <img src="https://images.unsplash.com/photo-1548013146-72479768bada?w=800&q=80" alt="Медина в Марокко">
+    <h2>6. Какой язык является официальным в Марокко наряду с амазигским (берберским)?</h2>
+    <button onclick="checkAnswer(0)">Французский</button>
+    <button onclick="checkAnswer(1)">Арабский</button>
+    <button onclick="checkAnswer(2)">Испанский</button>
+    <button onclick="checkAnswer(3)">Английский</button>
+    <p class="feedback" id="feedback6"></p>
+    <button class="next-btn" id="next6" onclick="nextQuestion()">Следующий вопрос →</button>
+  </div>
+
+  <!-- ВОПРОС 7 -->
+  <div class="question" id="q7">
+    <img src="fifo.jpg" alt="Марракеш">
+    <h2>7. Как называется знаменитая площадь в Марракеше?</h2>
+    <button onclick="checkAnswer(0)">Площадь Мухаммеда V</button>
+    <button onclick="checkAnswer(1)">Джемаа-эль-Фна</button>
+    <button onclick="checkAnswer(2)">Площадь наций</button>
+    <button onclick="checkAnswer(3)">Площадь Мшуар</button>
+    <p class="feedback" id="feedback7"></p>
+    <button class="next-btn" id="next7" onclick="nextQuestion()">Следующий вопрос →</button>
+  </div>
+
+  <!-- ВОПРОС 8 -->
+  <div class="question" id="q8">
+    <img src="https://images.unsplash.com/photo-1489493585363-d69421e0edd3?w=800&q=80" alt="Пейзаж Марокко">
+    <h2>8. В каком регионе Африки расположено Марокко?</h2>
+    <button onclick="checkAnswer(0)">Западная Африка</button>
+    <button onclick="checkAnswer(1)">Восточная Африка</button>
+    <button onclick="checkAnswer(2)">Центральная Африка</button>
+    <button onclick="checkAnswer(3)">Северная Африка</button>
+    <p class="feedback" id="feedback8"></p>
+    <button class="next-btn" id="next8" onclick="nextQuestion()">Следующий вопрос →</button>
+  </div>
+
+  <!-- ВОПРОС 9 -->
+  <div class="question" id="q9">
+    <img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=800&q=80" alt="Побережье Марокко">
+    <h2>9. Какое море омывает Марокко с севера?</h2>
+    <button onclick="checkAnswer(0)">Красное море</button>
+    <button onclick="checkAnswer(1)">Чёрное море</button>
+    <button onclick="checkAnswer(2)">Средиземное море</button>
+    <button onclick="checkAnswer(3)">Каспийское море</button>
+    <p class="feedback" id="feedback9"></p>
+    <button class="next-btn" id="next9" onclick="nextQuestion()">Следующий вопрос →</button>
+  </div>
+
+  <!-- ВОПРОС 10 -->
+  <div class="question" id="q10">
+    <img src="https://images.unsplash.com/photo-1512632578888-169bbbc64f33?w=800&q=80" alt="Марокканский базар">
+    <h2>10. Как называется традиционная марокканская одежда?</h2>
+    <button onclick="checkAnswer(0)">Кафтан / Джеллаба</button>
+    <button onclick="checkAnswer(1)">Сари</button>
+    <button onclick="checkAnswer(2)">Кимоно</button>
+    <button onclick="checkAnswer(3)">Дашики</button>
+    <p class="feedback" id="feedback10"></p>
+    <button class="next-btn" id="next10" onclick="nextQuestion()">Посмотреть результат →</button>
+  </div>
+
+  <!-- РЕЗУЛЬТАТ -->
+  <div id="result">
+    <h2>Викторина окончена! 🎉</h2>
+    <p id="scoreText"></p>
+    <button class="restart-btn" onclick="location.reload()">Начать заново</button>
+  </div>
+
+  <script>
+    // номер текущего вопроса (начинаем с 1)
+    var currentQ = 1;
+
+    // сколько правильных ответов дал пользователь
+    var score = 0;
+    function startQuiz() {
+      document.getElementById("start-screen").style.display = "none";
+      document.getElementById("q1").classList.add("active");
+    }
+
+    // правильный ответ для каждого вопроса
+    // 0 = первая кнопка, 1 = вторая кнопка, и так далее
+    var correctAnswers = [1, 2, 2, 1, 2, 1, 1, 3, 2, 0];
+
+    // короткие факты, которые показываются после ответа
+    var facts = [
+      "Рабат — столица Марокко с 1956 года. Касабланка самый большой город, но столица — Рабат.",
+      "Марокканский дирхам (MAD) — официальная валюта Марокко с 1960 года.",
+      "Атласские горы проходят через Марокко, Алжир и Тунис. Самая высокая точка — гора Тубкаль (4167 м).",
+      "Касабланка — крупнейший город Марокко, в нём живёт больше 3,7 миллиона человек.",
+      "Сахара — самая большая жаркая пустыня в мире, она находится на юго-востоке Марокко.",
+      "Арабский и амазигский — два официальных языка Марокко. Французский тоже широко используется.",
+      "Джемаа-эль-Фна — известная площадь в Марракеше, она входит в список ЮНЕСКО.",
+      "Марокко находится в Северной Африке, в регионе Магриб.",
+      "Средиземное море омывает Марокко с севера. Гибралтарский пролив отделяет Марокко от Испании.",
+      "Джеллаба и кафтан — традиционная марокканская одежда, которую носят и сегодня."
+    ];
+
+    // эта функция вызывается, когда пользователь нажимает на один из вариантов ответа
+    function checkAnswer(chosen) {
+      var correct = correctAnswers[currentQ - 1];
+
+      // находим блок текущего вопроса и все кнопки внутри него
+      var question = document.getElementById("q" + currentQ);
+      var buttons = question.getElementsByTagName("button");
+
+      // отключаем все 4 кнопки с ответами, чтобы нельзя было нажать ещё раз
+      for (var i = 0; i < 4; i++) {
+        buttons[i].disabled = true;
+
+        // подсвечиваем правильный вариант зелёным
+        if (i == correct) {
+          buttons[i].style.backgroundColor = "#b6f2b6";
+        }
+      }
+
+      // показываем текст с объяснением
+      var feedback = document.getElementById("feedback" + currentQ);
+
+      if (chosen == correct) {
+        // ответ верный
+        score = score + 1;
+        feedback.innerHTML = "✅ Правильно! " + facts[currentQ - 1];
+        feedback.style.color = "green";
+      } else {
+        // ответ неверный, подсвечиваем выбранную кнопку красным
+        buttons[chosen].style.backgroundColor = "#f7b6b6";
+        feedback.innerHTML = "❌ Неправильно. " + facts[currentQ - 1];
+        feedback.style.color = "red";
+      }
+
+      // показываем кнопку "следующий вопрос"
+      document.getElementById("next" + currentQ).style.display = "block";
+    }
+
+    // эта функция вызывается, когда пользователь нажимает "следующий вопрос"
+    function nextQuestion() {
+      // скрываем текущий вопрос
+      document.getElementById("q" + currentQ).classList.remove("active");
+
+      // переходим к следующему вопросу
+      currentQ = currentQ + 1;
+
+      if (currentQ <= 10) {
+        // показываем следующий вопрос
+        document.getElementById("q" + currentQ).classList.add("active");
+      } else {
+        // вопросов больше нет - показываем результат
+        document.getElementById("scoreText").innerHTML = "Твой результат: " + score + " из 10";
+        document.getElementById("result").style.display = "block";
+      }
+    }
+  </script>
+
+</body>
+</html>
